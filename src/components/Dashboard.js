@@ -34,16 +34,21 @@ export default class Dashboard extends React.Component {
   render() {
     const { error, isLoaded, items } = this.state;
     return (
-      <React.Fragment>
+      <div className='container'>
+        <div className="row">
+          <img src="//cssanimation.rocks/demo/starwars/images/star.svg" alt="Star"></img>
+          <img src="//cssanimation.rocks/demo/starwars/images/wars.svg" alt="Wars"></img>
+          <h2 className="byline">If an item does not appear in our records, then is does not exist</h2>
+        </div>
         <FormComponent />
         {error ? <ErrorComponent error={error} /> : null}
         {!error && !isLoaded ? (
           <SpinnerComponent text="Loading Star Wars Data..." />
         ) : null}
         {!error && isLoaded ? (
-          <ListComponent data={items} title="The Dark Side, and the Light" />
+          <ListComponent data={items} title="The following has been found" />
         ) : null}
-      </React.Fragment>
+      </div>
     );
   }
 }

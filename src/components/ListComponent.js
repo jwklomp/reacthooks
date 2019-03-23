@@ -4,8 +4,8 @@ import ListItemComponent from "./ListItemComponent"
 
 const ListComponent = props =>
   <div>
-    <h1>{props.title}</h1>
-    <ul>
+    <h2 className="row">{props.title}</h2>
+    <ul className="row">
       {props.data.map(item => <ListItemComponent item={item} key={item.name} />)}
     </ul>
   </div>;

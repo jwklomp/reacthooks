@@ -2,6 +2,6 @@
 import React from "react";
 
 const SpinnerComponent = props =>
-    <div>{props.text}</div>;
+    <div className="row">{props.text}</div>;
 
 export default SpinnerComponent;

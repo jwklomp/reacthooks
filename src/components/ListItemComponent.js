@@ -2,6 +2,6 @@
 import React from "react";
 
 const ListItemComponent = props =>
-    <li>{props.item.name} - {props.item.gender} </li>;
+    <li> {props.item.name} - {props.item.gender} </li>;
 
 export default ListItemComponent;

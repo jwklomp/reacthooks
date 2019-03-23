@@ -9,3 +9,30 @@ export const getStarWarsData = (subject, searchTerm, onSuccess, onError) =>
             result => onSuccess(result),
             error => onError(error)
         );
+
+export const subjects = [
+  {
+    key: "films",
+    value: "Movies"
+  },
+  {
+    key: "people",
+    value: "People"
+  },
+  {
+    key: "planets",
+    value: "Planets"
+  },
+  {
+    key: "species",
+    value: "Species"
+  },
+  {
+    key: "starships",
+    value: "Starships"
+  },
+  {
+    key: "vehicles",
+    value: "Vehicles"
+  }    
+]        

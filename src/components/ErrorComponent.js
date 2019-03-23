@@ -2,6 +2,6 @@
 import React from "react";
 
 const ErrorComponent = props =>
-    <div>Error: {props.error.message}</div>;
+    <div className="row">Error: {props.error.message}</div>;
 
 export default ErrorComponent;
