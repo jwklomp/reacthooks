@@ -1,7 +1,7 @@
 import React from "react";
 import ErrorComponent from './ErrorComponent';
 import SpinnerComponent from './SpinnerComponent';
-import ListComponent from './ListComponent';
+import TableComponent from './TableComponent';
 import FormComponent from './FormComponent';
 import * as DataUtils from './../utils/DataUtils'
 
@@ -13,10 +13,6 @@ export default class Dashboard extends React.Component {
       isLoaded: false,
       items: []
     };
-  }
-
-  componentDidMount() {
-    DataUtils.getStarWarsData("people", "darth", this.onSuccess, this.onError);
   }
 
   onSuccess = result =>
@@ -31,6 +27,8 @@ export default class Dashboard extends React.Component {
       error
     });
 
+  onChange = (subject, searchTerm) => DataUtils.getStarWarsData(subject, searchTerm, this.onSuccess, this.onError);
+
   render() {
     const { error, isLoaded, items } = this.state;
     return (
@@ -38,15 +36,17 @@ export default class Dashboard extends React.Component {
         <div className="row">
           <img src="//cssanimation.rocks/demo/starwars/images/star.svg" alt="Star"></img>
           <img src="//cssanimation.rocks/demo/starwars/images/wars.svg" alt="Wars"></img>
-          <h2 className="byline">If an item does not appear in our records, then is does not exist</h2>
         </div>
-        <FormComponent />
+        <div className='row'>
+          <h2 className="subtitle">If an item does not appear in our records, then is does not exist</h2>
+        </div>
+        <FormComponent onChange={this.onChange} />
         {error ? <ErrorComponent error={error} /> : null}
         {!error && !isLoaded ? (
           <SpinnerComponent text="Loading Star Wars Data..." />
         ) : null}
         {!error && isLoaded ? (
-          <ListComponent data={items} title="The following has been found" />
+          <TableComponent data={items} title="The following results have been found" />
         ) : null}
       </div>
     );
