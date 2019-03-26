@@ -9,7 +9,7 @@ const TableComponent = props =>
     <table className="table table-dark">
     <thead>
         <tr>
-        {DataUtils.getProperties(props.data[0] || {}).map(item => <th scope="col">{item}</th>)} 
+        {DataUtils.getProperties(props.data[0] || {}).map(item => <th scope="col">{item}</th>)} // obv subject doen
         </tr>
       </thead>
       <tbody>
