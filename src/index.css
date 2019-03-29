@@ -9,10 +9,20 @@ body {
   background: #000 url(//cssanimation.rocks/demo/starwars/images/bg.jpg);
 }
 
-h2 {
+h1,h2 {
   color: #ff2400;
+  margin-top: 25px;
 }
+
 
 label {
   color: #ebd800;
+}
+
+div.message {
+  color: #fafafa;
+}
+
+div.header {
+  margin-top: 40px;
 }

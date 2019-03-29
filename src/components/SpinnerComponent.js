@@ -3,7 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const SpinnerComponent = props =>
-    <div className="row">{props.text}</div>;
+    <div className="message">{props.text}</div>;
 
 export default SpinnerComponent;
 

@@ -15,6 +15,10 @@ export default class Dashboard extends React.Component {
     };
   }
 
+  componentDidMount() {
+    DataUtils.getStarWarsData("people", "", this.onSuccess, this.onError);
+  }
+
   onSuccess = (results, subject) =>
     this.setState({
       isLoaded: true,
@@ -28,13 +32,19 @@ export default class Dashboard extends React.Component {
       error
     });
 
-  onChange = (subject, searchTerm) => DataUtils.getStarWarsData(subject, searchTerm, this.onSuccess, this.onError);
+  onChange = (subject, searchTerm) => { 
+    this.setState({
+      isLoaded: false,
+      error: null
+    });
+    DataUtils.getStarWarsData(subject, searchTerm, this.onSuccess, this.onError);
+  }
 
   render() {
     const { error, isLoaded, items } = this.state;
     return (
       <div className='container'>
-        <div className="row">
+        <div className="row header">
           <img src="//cssanimation.rocks/demo/starwars/images/star.svg" alt="Star"></img>
           <img src="//cssanimation.rocks/demo/starwars/images/wars.svg" alt="Wars"></img>
         </div>
@@ -47,7 +57,10 @@ export default class Dashboard extends React.Component {
           <SpinnerComponent text="Loading Star Wars Data..." />
         ) : null}
         {!error && isLoaded ? (
-          <TableComponent data={items} title="The following results have been found" subject={this.state.subject}/>
+          <TableComponent data={items} 
+          title="The following results have been found" 
+          subject={this.state.subject} 
+          headerFields={DataUtils.fieldsPerSubjectMap.get(this.state.subject)}/>
         ) : null}
       </div>
     );
