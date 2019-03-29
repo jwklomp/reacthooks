@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import * as DataUtils from './../utils/DataUtils'
 export default class FormComponent extends React.Component {
   constructor(props) {
@@ -49,3 +50,7 @@ export default class FormComponent extends React.Component {
     );
   }
 }
+
+FormComponent.propTypes = {
+  onChange: PropTypes.func.isRequired
+};

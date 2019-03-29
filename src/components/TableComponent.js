@@ -1,17 +1,14 @@
 /* eslint-disable require-jsdoc */
 import React from "react";
+import PropTypes from "prop-types";
 import TableRowComponent from "./TableRowComponent"
-import * as DataUtils from './../utils/DataUtils'
+import TableHeaderComponent from "./TableHeaderComponent";
 
 const TableComponent = props =>
   <div className='row'>
     <h2>{props.title}</h2>
     <table className="table table-dark">
-    <thead>
-        <tr>
-        {DataUtils.getProperties(props.data[0] || {}).map(item => <th scope="col">{item}</th>)} // obv subject doen
-        </tr>
-      </thead>
+      <TableHeaderComponent subject={props.subject}/>
       <tbody>
         {props.data.map(item => <TableRowComponent item={item} key={item.name} />)}
       </tbody>
@@ -19,3 +16,9 @@ const TableComponent = props =>
   </div>;
 
 export default TableComponent;
+
+TableComponent.propTypes = {
+  data: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  subject: PropTypes.string.isRequired
+}

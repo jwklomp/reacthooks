@@ -15,10 +15,11 @@ export default class Dashboard extends React.Component {
     };
   }
 
-  onSuccess = result =>
+  onSuccess = (results, subject) =>
     this.setState({
       isLoaded: true,
-      items: result.results
+      items: results,
+      subject
     });
 
   onError = (error) =>
@@ -46,7 +47,7 @@ export default class Dashboard extends React.Component {
           <SpinnerComponent text="Loading Star Wars Data..." />
         ) : null}
         {!error && isLoaded ? (
-          <TableComponent data={items} title="The following results have been found" />
+          <TableComponent data={items} title="The following results have been found" subject={this.state.subject}/>
         ) : null}
       </div>
     );
