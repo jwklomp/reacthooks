@@ -32,7 +32,7 @@ export default class Dashboard extends React.Component {
       error
     });
 
-  onChange = (subject, searchTerm) => { 
+  onChange = (subject, searchTerm) => {
     this.setState({
       isLoaded: false,
       error: null
@@ -57,10 +57,11 @@ export default class Dashboard extends React.Component {
           <SpinnerComponent text="Loading Star Wars Data..." />
         ) : null}
         {!error && isLoaded ? (
-          <TableComponent data={items} 
-          title="The following results have been found" 
-          subject={this.state.subject} 
-          headerFields={DataUtils.fieldsPerSubjectMap.get(this.state.subject)}/>
+          <TableComponent 
+            data={items}
+            title={ items.length > 0 ? "The following results have been found": "Your search returned no results. Try again."}
+            subject={this.state.subject}
+            headerFields={DataUtils.fieldsPerSubjectMap.get(this.state.subject)} />
         ) : null}
       </div>
     );

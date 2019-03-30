@@ -19,6 +19,10 @@ label {
   color: #ebd800;
 }
 
+.error {
+  color: #ff2400;
+}
+
 div.message {
   color: #fafafa;
 }

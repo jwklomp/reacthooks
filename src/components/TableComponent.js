@@ -3,13 +3,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import TableRowComponent from "./TableRowComponent"
 import TableHeaderComponent from "./TableHeaderComponent";
-import * as DataUtils from './../utils/DataUtils'
 
 const TableComponent = props =>
   <div className='row'>
     <h2>{props.title}</h2>
     <table className="table table-dark">
-      <TableHeaderComponent headerFields={DataUtils.fieldsPerSubjectMap.get(props.subject)}/>
+      <TableHeaderComponent headerFields={props.headerFields}/>
       <tbody>
         {props.data.map(item => <TableRowComponent item={item} key={item.name} />)}
       </tbody>
