@@ -3,9 +3,9 @@ import ErrorComponent from './ErrorComponent';
 import SpinnerComponent from './SpinnerComponent';
 import TableComponent from './TableComponent';
 import FormComponent from './FormComponent';
-import * as DataUtils from './../utils/DataUtils'
+import * as DataUtils from '../utils/DataUtils'
 
-export default class Dashboard extends React.Component {
+export default class DashboardComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
