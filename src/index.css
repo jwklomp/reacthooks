@@ -23,8 +23,9 @@ label {
   color: #ff2400;
 }
 
-div.message {
+div.text {
   color: #fafafa;
+  text-align: left;
 }
 
 div.header {

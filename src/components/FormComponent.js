@@ -18,18 +18,16 @@ export default class FormComponent extends React.Component {
     const value = target.value;
     const name = target.name;
 
-    console.log(name, value);
     this.setState({
       [name]: value
     });
-
   }
 
   render() {
     return (
       <form>
         <div className="form-row">
-          <div className="formGroup col-md-3">
+          <div className="formGroup col-md-6">
             <label>
               Pick your Star Wars Subject:
           <select name="subject" className="form-control" value={this.state.subject} onChange={this.handleChange}>
@@ -39,7 +37,7 @@ export default class FormComponent extends React.Component {
               </select>
             </label>
           </div>
-          <div className="formGroup col-md-3">
+          <div className="formGroup col-md-6">
             <label>
               Enter a filter term:
           <input name="searchTerm" className="form-control" type="text" value={this.state.searchTerm} onChange={this.handleChange} />

@@ -26,7 +26,7 @@ export default class Dashboard extends React.Component {
       subject
     });
 
-  onError = (error) =>
+  onError = error =>
     this.setState({
       isLoaded: true,
       error
@@ -41,7 +41,7 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { error, isLoaded, items, subject } = this.state;
     return (
       <div className='container'>
         <div className="row header">
@@ -51,17 +51,23 @@ export default class Dashboard extends React.Component {
         <div className='row'>
           <h2 className="subtitle">If an item does not appear in our records, then is does not exist</h2>
         </div>
-        <FormComponent onChange={this.onChange} />
+        <div className='row'>
+          <div className="col-md-6">
+            <FormComponent onChange={this.onChange} />
+          </div>
+          <div className="col-md-6">
+            {!error && !isLoaded ? (
+              <SpinnerComponent text="Searching Star Wars archives..." />
+            ) : null}
+          </div>
+        </div>
         {error ? <ErrorComponent error={error} /> : null}
-        {!error && !isLoaded ? (
-          <SpinnerComponent text="Loading Star Wars Data..." />
-        ) : null}
         {!error && isLoaded ? (
-          <TableComponent 
+          <TableComponent
             data={items}
-            title={ items.length > 0 ? "The following results have been found": "Your search returned no results. Try again."}
-            subject={this.state.subject}
-            headerFields={DataUtils.fieldsPerSubjectMap.get(this.state.subject)} />
+            title={items.length > 0 ? "The following results have been found" : "Your search returned no results. Try again."}
+            subject={subject}
+            headerFields={DataUtils.fieldsPerSubjectMap.get(subject)} />
         ) : null}
       </div>
     );
