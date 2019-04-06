@@ -7,6 +7,7 @@ export default class FormComponent extends React.Component {
     this.state = { subject: 'people', searchTerm: "" };
   }
 
+  // todo uitzoeken waarom nodig
   componentDidUpdate(prevProps, prevState) {
     if (this.state.subject !== prevState.subject || this.state.searchTerm !== prevState.searchTerm) {
       this.props.onChange(this.state.subject, this.state.searchTerm);
