@@ -72,7 +72,7 @@ export const getStarWarsData = (subject, searchTerm, onSuccess, onError) =>
   fetch(`https://swapi.co/api/${subject}/?search=${searchTerm}`)
     .then(res => res.json())
     .then(
-      result => onSuccess(mapResult(subject, result.results), subject),
+      result => onSuccess(mapResult(subject, result.results)),
       error => onError(error)
     );
 

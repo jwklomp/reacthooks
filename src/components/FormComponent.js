@@ -1,54 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import * as DataUtils from './../utils/DataUtils'
-export default class FormComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { subject: 'people', searchTerm: "" };
-  }
 
-  // todo uitzoeken waarom nodig
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.subject !== prevState.subject || this.state.searchTerm !== prevState.searchTerm) {
-      this.props.onChange(this.state.subject, this.state.searchTerm);
-    }
-  }
+const FormComponent = React.memo(props => {
 
-  handleChange = event => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+  const [subject, setSubject] = useState('people');
+  const [searchTerm, setSearchTerm] = useState('');
 
-    this.setState({
-      [name]: value
-    });
-  }
+  props.onChange(subject, searchTerm);
 
-  render() {
-    return (
-      <form>
-        <div className="form-row">
-          <div className="formGroup col-md-6">
-            <label>
-              Pick your Star Wars Subject:
-          <select name="subject" className="form-control" value={this.state.subject} onChange={this.handleChange}>
-                {DataUtils.subjects.map(item =>
-                  <option value={item.key} selected={this.state.subject === item.key}>{item.value}</option>
-                )}
-              </select>
-            </label>
-          </div>
-          <div className="formGroup col-md-6">
-            <label>
-              Enter a filter term:
-          <input name="searchTerm" className="form-control" type="text" value={this.state.searchTerm} onChange={this.handleChange} />
-            </label>
-          </div>
+  return (
+    <form>
+      <div className="form-row">
+        <div className="formGroup col-md-6">
+          <label>
+            Pick your Star Wars Subject:
+          <select name="subject" className="form-control" value={subject} onChange={e => setSubject(e.target.value)}>
+              {DataUtils.subjects.map(item =>
+                <option value={item.key} key={item.key}>{item.value}</option>
+              )}
+            </select>
+          </label>
         </div>
-      </form>
-    );
-  }
-}
+        <div className="formGroup col-md-6">
+          <label>
+            Enter a filter term:
+          <input name="searchTerm" className="form-control" type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+          </label>
+        </div>
+      </div>
+    </form>
+  );
+});
+
+export default FormComponent;
 
 FormComponent.propTypes = {
   onChange: PropTypes.func.isRequired

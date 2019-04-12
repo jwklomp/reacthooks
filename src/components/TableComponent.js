@@ -10,10 +10,10 @@ const TableComponent = props =>
     <table className="table table-dark">
       <TableHeaderComponent headerFields={props.headerFields}/>
       <tbody>
-        {props.data.map(item => <TableRowComponent item={item} key={item.name} />)}
+        {props.data.map(item => <TableRowComponent item={item} key={item.name || item.title} />)}
       </tbody>
     </table>
-  </div>;
+  </div>
 
 export default TableComponent;
 
