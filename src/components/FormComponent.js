@@ -9,13 +9,16 @@ const FormComponent = React.memo(props => {
 
   props.onChange(subject, searchTerm);
 
+  const handleSetSubject = e => setSubject(e.target.value);
+  const handleSearchTerm = e => setSearchTerm(e.target.value);
+
   return (
     <form>
       <div className="form-row">
         <div className="formGroup col-md-6">
           <label>
             Pick your Star Wars Subject:
-          <select name="subject" className="form-control" value={subject} onChange={e => setSubject(e.target.value)}>
+          <select name="subject" className="form-control" value={subject} onChange={handleSetSubject}>
               {DataUtils.subjects.map(item =>
                 <option value={item.key} key={item.key}>{item.value}</option>
               )}
@@ -25,7 +28,7 @@ const FormComponent = React.memo(props => {
         <div className="formGroup col-md-6">
           <label>
             Enter a filter term:
-          <input name="searchTerm" className="form-control" type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+          <input name="searchTerm" className="form-control" type="text" value={searchTerm} onChange={handleSearchTerm} />
           </label>
         </div>
       </div>
