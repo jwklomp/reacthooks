@@ -6,6 +6,8 @@ import FormComponent from './FormComponent';
 import * as DataUtils from '../utils/DataUtils'
 
 const DashboardComponent = () => {
+  console.log("running DashboardComponent")
+
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -13,6 +15,7 @@ const DashboardComponent = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
+    console.log("running useEffect")
     DataUtils.getStarWarsData(subject, searchTerm, onSuccess, onError);
   }, [subject, searchTerm]);
 
@@ -27,6 +30,9 @@ const DashboardComponent = () => {
   }
 
   const onChange = (_subject, _searchTerm) => {
+    console.log(`subject - current: ${subject} - new: ${_subject}`)
+    console.log(`searchTerm - current: ${searchTerm} - new: ${_searchTerm}`)
+    console.log(`changed: ${(_subject !== subject || _searchTerm !== searchTerm)}`)
     if (_subject !== subject || _searchTerm !== searchTerm) {
       setSubject(_subject);
       setSearchTerm(_searchTerm);

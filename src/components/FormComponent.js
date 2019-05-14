@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as DataUtils from './../utils/DataUtils'
 
 const FormComponent = React.memo(props => {
-
+  console.log("running FormComponent")
   const [subject, setSubject] = useState('people');
   const [searchTerm, setSearchTerm] = useState('');
 
