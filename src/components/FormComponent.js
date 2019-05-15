@@ -8,10 +8,15 @@ const FormComponent = React.memo(props => {
   const [subject, setSubject] = useState('people');
   const [searchTerm, setSearchTerm] = useState('');
 
-  props.onChange(subject, searchTerm);
-
-  const handleSetSubject = e => setSubject(e.target.value);
-  const handleSearchTerm = e => setSearchTerm(e.target.value);
+  const handleSetSubject = e => {
+    setSubject(e.target.value);
+    setSearchTerm("");    
+    props.onChange(e.target.value, "");
+  }     
+  const handleSearchTerm = e => {
+    setSearchTerm(e.target.value);
+    props.onChange(subject, e.target.value);
+  }
 
   return (
     <form>

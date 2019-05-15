@@ -4,16 +4,18 @@ import PropTypes from "prop-types";
 import TableRowComponent from "./TableRowComponent"
 import TableHeaderComponent from "./TableHeaderComponent";
 
-const TableComponent = props =>
-  <div className='row'>
+const TableComponent = React.memo(props => {
+  console.log("running TableComponent")
+  return (<div className='row'>
     <h2>{props.title}</h2>
     <table className="table table-dark">
-      <TableHeaderComponent headerFields={props.headerFields}/>
+      <TableHeaderComponent headerFields={props.headerFields} />
       <tbody>
         {props.data.map(item => <TableRowComponent item={item} key={item.name || item.title} />)}
       </tbody>
     </table>
-  </div>
+  </div>)}
+)
 
 export default TableComponent;
 
