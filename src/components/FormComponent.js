@@ -4,15 +4,16 @@ import * as DataUtils from './../utils/DataUtils'
 
 // Using React.memo causes Component only to rerender when the props change. 
 const FormComponent = React.memo(props => {
-  console.log("running FormComponent")
+
+  // syntax: see https://reactjs.org/docs/hooks-reference.html#usestate
   const [subject, setSubject] = useState("people"); // initial value is set to "people"
   const [searchTerm, setSearchTerm] = useState(""); // initial value is set to ""
 
   const handleSetSubject = e => {
     setSubject(e.target.value);
-    setSearchTerm("");    
+    setSearchTerm("");
     props.onChange(e.target.value, "");
-  }     
+  }
   const handleSearchTerm = e => {
     setSearchTerm(e.target.value);
     props.onChange(subject, e.target.value);

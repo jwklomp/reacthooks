@@ -6,8 +6,6 @@ import FormComponent from './FormComponent';
 import * as DataUtils from '../utils/DataUtils'
 
 const DashboardComponent = () => {
-  console.log("running DashboardComponent")
-
   const ONCHANGE = "onchange";
   const ERROR = "error";
   const SUCCESS = "success";
@@ -26,19 +24,23 @@ const DashboardComponent = () => {
         throw new Error();
     }
   }
+
+  // syntax see: https://reactjs.org/docs/hooks-reference.html#usereducer 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+   // syntax see: https://reactjs.org/docs/hooks-reference.html#useeffect 
   useEffect(() => {
     const onSuccess = results => dispatch({ type: SUCCESS, results });
     const onError = error => dispatch({ type: ERROR, error });
 
-    console.log("useEffect. Going to get awesome Star Wars data");
     DataUtils.getStarWarsData(state.subject, state.searchTerm, onSuccess, onError);
   }, [state.subject, state.searchTerm]);
 
   // Create a memoized function to pass to FormComponent. This is necessary because otherwize the function reference is 
   // different on each render and the React.memo in FormComponent will not have any effect, resulting in endless rerender. 
   // Every value referenced inside the function should appear in the dependencies array, but in this case this is nothing.
+
+  // syntax see: https://reactjs.org/docs/hooks-reference.html#usecallback 
   const memoizedHandleChange = useCallback((subject, searchTerm) => {
     console.log(`handleChange subject: ${subject} searchTerm: ${searchTerm}`)
     dispatch({ type: ONCHANGE, subject, searchTerm });
