@@ -42,7 +42,6 @@ const DashboardComponent = () => {
 
   // syntax see: https://reactjs.org/docs/hooks-reference.html#usecallback 
   const memoizedHandleChange = useCallback((subject, searchTerm) => {
-    console.log(`handleChange subject: ${subject} searchTerm: ${searchTerm}`)
     dispatch({ type: ONCHANGE, subject, searchTerm });
   }, []);
 
