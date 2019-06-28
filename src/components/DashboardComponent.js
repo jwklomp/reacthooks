@@ -5,7 +5,10 @@ import TableComponent from './TableComponent';
 import FormComponent from './FormComponent';
 import * as DataUtils from '../utils/DataUtils'
 
+// note the extends React.Component
 export default class DashboardComponent extends React.Component {
+
+    // Class constructor used to set error, isLoaded and items
   constructor(props) {
     super(props);
     this.state = {
@@ -15,6 +18,7 @@ export default class DashboardComponent extends React.Component {
     };
   }
 
+  // React lifecycle method to get the Star Wars data when the component has been mounted in the DOM
   componentDidMount() {
     DataUtils.getStarWarsData("people", "", this.onSuccess, this.onError);
   }

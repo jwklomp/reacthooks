@@ -1,12 +1,17 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import * as DataUtils from './../utils/DataUtils'
+
+// note the extends React.Component
 export default class FormComponent extends React.Component {
+
+  // Class constructor used to set initial state of subject and searchTerm
   constructor(props) {
     super(props);
     this.state = { subject: 'people', searchTerm: "" };
   }
 
+  // React lifecycle method to run the onChange function when the component did update
   componentDidUpdate(prevProps, prevState) {
     if (this.state.subject !== prevState.subject || this.state.searchTerm !== prevState.searchTerm) {
       this.props.onChange(this.state.subject, this.state.searchTerm);
