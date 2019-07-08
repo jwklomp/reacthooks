@@ -12,12 +12,17 @@ export default class FormComponent extends React.Component {
   }
 
   // React lifecycle method to run the onChange function when the component did update
+  // when subject or searchTerm changes, run the update in DashboardComponent
   componentDidUpdate(prevProps, prevState) {
     if (this.state.subject !== prevState.subject || this.state.searchTerm !== prevState.searchTerm) {
       this.props.onChange(this.state.subject, this.state.searchTerm);
     }
   }
 
+  /**
+   * Handles a DOM event
+   * @param {Event} event interface, see https://developer.mozilla.org/en-US/docs/Web/API/Event
+   */
   handleChange = event => {
     const target = event.target;
     const value = target.value;

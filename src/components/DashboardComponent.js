@@ -5,10 +5,10 @@ import TableComponent from './TableComponent';
 import FormComponent from './FormComponent';
 import * as DataUtils from '../utils/DataUtils'
 
-// note the extends React.Component
+// Note the extends React.Component. This makes it a Class Component.
 export default class DashboardComponent extends React.Component {
 
-    // Class constructor used to set error, isLoaded and items
+  // Class constructor used to set error, isLoaded and items
   constructor(props) {
     super(props);
     this.state = {
@@ -18,11 +18,16 @@ export default class DashboardComponent extends React.Component {
     };
   }
 
-  // React lifecycle method to get the Star Wars data when the component has been mounted in the DOM
+  // React lifecycle method to get initial Star Wars data when the component has been mounted in the DOM
   componentDidMount() {
     DataUtils.getStarWarsData("people", "", this.onSuccess, this.onError);
   }
 
+  /**  
+   * Handles the succesful fetch of API data.
+   * @param {string} results - results from the API
+   * @param {string} subject - subject eg "People"
+  */
   onSuccess = (results, subject) =>
     this.setState({
       isLoaded: true,
@@ -30,12 +35,22 @@ export default class DashboardComponent extends React.Component {
       subject
     });
 
+  /**  
+   * Handles the unsuccesful fetch of API data.
+   * @param {string} error - error from the API
+  */
   onError = error =>
     this.setState({
       isLoaded: true,
       error
     });
 
+  /**  
+   * Handles change in subject or searchTerm.
+   * Gets the Star Wars data from the API, for the provided subject and searchTerm
+   * @param {string} subject - search subject eg "people"
+   * @param {string} searchTerm - search term eg "Luke"
+  */
   onChange = (subject, searchTerm) => {
     this.setState({
       isLoaded: false,
